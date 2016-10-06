@@ -56,4 +56,4 @@ export default reduxApi({
     }
   })
   .use("fetch", adapterFetch(fetch))
-  .use("rootUrl", "http://localhost:3000/api/v1/");
+  .use("rootUrl", "https://familycc-staging.herokuapp.com/api/v1/");
