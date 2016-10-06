@@ -10,9 +10,21 @@
 
 import { expect } from 'chai';
 
-describe('test suite', () => {
+describe('FccGiving', () => {
 
   it('test', () => {
+    expect(true).to.be.equal.true;
+  });
+
+  it('test 1', () => {
+    expect(true).to.be.equal.true;
+  });
+
+  it('test 2', () => {
+    expect(true).to.be.equal.true;
+  });
+
+  it('test 3', () => {
     expect(true).to.be.equal.true;
   });
 

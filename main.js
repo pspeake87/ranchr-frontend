@@ -12,16 +12,31 @@ import 'babel-polyfill';
 import 'whatwg-fetch';
 
 import React from 'react';
+import { createStore, applyMiddleware, combineReducers } from "redux";
 import ReactDOM from 'react-dom';
 import FastClick from 'fastclick';
 import { Provider } from 'react-redux';
-
-import store from './core/store';
+import thunk from "redux-thunk";
 import router from './core/router';
 import history from './core/history';
+import reducers from './core/Reducers';
 
 let routes = require('./routes.json'); // Loaded with utils/routes-loader.js
 const container = document.getElementById('container');
+const middlewares = [thunk];
+
+const createLogger = require('redux-logger');
+const logger = createLogger({
+  //predicate: (getState, action) => action.type.match(/DRUPAL/)
+});
+middlewares.push(logger);
+const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
+
+
+const store = createStoreWithMiddleware(reducers);
+
+
+
 
 function renderComponent(component) {
   ReactDOM.render(<Provider store={store}>{component}</Provider>, container);
@@ -44,11 +59,3 @@ render(history.getCurrentLocation());
 // and the firing of a click event on mobile browsers
 // https://github.com/ftlabs/fastclick
 FastClick.attach(document.body);
-
-// Enable Hot Module Replacement (HMR)
-if (module.hot) {
-  module.hot.accept('./routes.json', () => {
-    routes = require('./routes.json'); // eslint-disable-line global-require
-    render(history.getCurrentLocation());
-  });
-}
