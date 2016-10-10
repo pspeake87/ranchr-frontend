@@ -49,6 +49,12 @@
     outline: none;
   }
 
+  input[type=text] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
   .text_inline {
     display: inline;
   }

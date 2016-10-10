@@ -121,7 +121,7 @@ class GivingCheckout extends React.Component {
 
           <div>
             <input type="text"
-            style={{paddingLeft: 25}}
+            style={{paddingLeft: 25, width: screen.width - 60}}
             value={form.data.name}
             onChange={(e) => dispatch(setFormData(FORM_KEY, {name: e.currentTarget.value}))}
             />
@@ -135,7 +135,7 @@ class GivingCheckout extends React.Component {
 
           <div>
             <input type="text"
-            style={{paddingLeft: 25}}
+            style={{paddingLeft: 25, width: screen.width - 60}}
             value={form.data.email}
             onChange={(e) => dispatch(setFormData(FORM_KEY, {email: e.currentTarget.value}))}
             />
@@ -149,7 +149,7 @@ class GivingCheckout extends React.Component {
 
           <div>
             <input type="text"
-            style={{paddingLeft: 25}}
+            style={{paddingLeft: 25, width: screen.width - 60}}
             value={form.data.card_number}
             onChange={(e) => dispatch(setFormData(FORM_KEY, {card_number: e.currentTarget.value}))}
             />
@@ -163,7 +163,7 @@ class GivingCheckout extends React.Component {
 
           <div>
             <input type="text"
-            style={{paddingLeft: 25}}
+            style={{paddingLeft: 25, width: screen.width - 60}}
             value={form.data.exp_month}
             onChange={(e) => dispatch(setFormData(FORM_KEY, {exp_month: e.currentTarget.value}))}
             />
@@ -177,7 +177,7 @@ class GivingCheckout extends React.Component {
 
           <div>
             <input type="text"
-            style={{paddingLeft: 25}}
+            style={{paddingLeft: 25, width: screen.width - 60}}
             value={form.data.exp_year}
             onChange={(e) => dispatch(setFormData(FORM_KEY, {exp_year: e.currentTarget.value}))}
             />
