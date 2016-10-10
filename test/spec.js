@@ -25,7 +25,8 @@ describe('FccGiving', () => {
   });
 
   it('test 3', () => {
-    expect(true).to.be.equal.true;
+    let int = 5;
+    expect(int).to.be.equal(4);
   });
 
 });

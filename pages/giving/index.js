@@ -19,6 +19,8 @@ import Link from '../../components/Link/Link';
 import {setAmountForGivingCategory, goToGivingCategory, setToken} from '../../core/ActionCreators';
 import history from '../../core/history';
 
+
+
 class Giving extends React.Component {
 
   constructor() {
@@ -31,13 +33,8 @@ class Giving extends React.Component {
 
   componentDidMount() {
     document.title = title;
-    var token = ""
-    if(location.search.charAt( 0 ) === '?' ) {
-      token = location.search.slice( 1 );
-    }
-    console.log(token)
-    this.props.dispatch(setToken(token));;
-    this.props.dispatch(AuthenticatedAPI.actions.initial_rails_data());;
+
+    this.updateState(this.props);
   }
 
   componentWillReceiveProps(newProps) {
@@ -75,7 +72,7 @@ class Giving extends React.Component {
         {this.state.categories.map((item, i) =>
           <li key={i}>
             <Link to="/givingCategories" onClick={() => this.handleClick(item)}>
-              {item.name}   {item.amount}
+              {item.name}   ${parseInt(item.amount).toFixed(2)}
             </Link>
           </li>
         )}
@@ -87,12 +84,14 @@ class Giving extends React.Component {
 
   render() {
     return (
-      <Layout className={s.content}>
+      <Layout title={'Giving'} className={s.content}>
         {this.renderList()}
         <p>
           <br /><br />
         </p>
-        <span>{this.state.total}</span>
+        <div>Total: ${this.state.total.toFixed(2)}</div>
+        <br />
+
         <Link to="/givingCheckout">
           Submit
         </Link>

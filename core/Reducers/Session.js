@@ -13,6 +13,7 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action = {}) {
+
   switch (action.type) {
 
     case ActionTypes.ACCESS_TOKEN:
@@ -28,6 +29,12 @@ export default function reducer(state = initialState, action = {}) {
         default:
           return state;
       }
+
+      case ActionTypes.BRAINTREE_CLIENT_TOKEN:
+        return {
+          ...state,
+          braintree_client_token: action.data.giving_client_token
+        };
 
     default:
       return state;

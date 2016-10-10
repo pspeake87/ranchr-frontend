@@ -1,5 +1,6 @@
 
 import React from 'react';
+import * as ActionTypes from './ActionTypes';
 import reduxApi, {transformers} from 'redux-api';
 import adapterFetch from 'redux-api/lib/adapters/fetch';
 import {initialRailsDataFetched} from './ActionCreators';
@@ -9,6 +10,7 @@ import history from './history';
 export default reduxApi({
   initial_rails_data: {
     url: '/initial_data',
+    broadcast: [ActionTypes.BRAINTREE_CLIENT_TOKEN],
     postfetch: [
       function ({data, actions, dispatch, getState, request}) {
         dispatch(initialRailsDataFetched(data));

@@ -13,13 +13,13 @@ const initialState = {
   checkout: {
     ...FORM_STATE_TEMPLATE,
     data: {
-      payment_method: 'new',
-      card_number: '4111111111111111',
-      exp_month: '12',
-      exp_year: '18',
-      name: 'philip',
-      email: 'philip@koremedia.net',
-      keep_card_on_file: true,
+      payment_method: '',
+      card_number: '',
+      exp_month: '',
+      exp_year: '',
+      name: '',
+      email: '',
+      keep_card_on_file: false,
       message: '',
       choosing_payment_method: ''
     }
@@ -45,7 +45,6 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-
   switch (action.type) {
 
     case ActionTypes.SET_FORM_DATA:

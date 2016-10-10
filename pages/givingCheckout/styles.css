@@ -8,10 +8,68 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-@media screen and (max-width: 1024px) {
 
-  .content {
-    padding: 0 16px;
+
+  .card_image {
+    height: 15px;
+    width: 15px;
+    padding: 10px;
   }
 
-}
+  .addWrapper {
+    display: inline-block;
+    background-color: rgb(56, 162, 243);
+    height: 30px;
+    width: 30px;
+    border-radius: 30px;
+    margin-left: 10px;
+  }
+
+  .addPlusSign {
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-top: 2px;
+    margin-bottom: 3px;
+  }
+
+  .underline {
+    margin: 3px 40px 12px 20px;
+    height: 1px;
+    background-color: #dae0e4;
+  }
+
+  .inputTitle {
+    color: #dae0e4;
+    padding-left: 20px;
+  }
+
+  textarea:focus, input:focus{
+    outline: none;
+  }
+
+  .text_inline {
+    display: inline;
+  }
+
+  .addText {
+    display: inline;
+    margin: 7px 10px 10px;
+  }
+
+  .card_text {
+    width: 100%;
+    display: inline;
+    padding-left: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    background-color: #EEF3F6;
+    border-radius: 5px;
+    border: 2px solid;
+    border-color: #CED5DB;
+  }
+
+  .card_wrapper {
+    margin-top: 5px;
+  }

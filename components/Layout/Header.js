@@ -20,12 +20,15 @@ class Header extends React.Component {
   }
 
   componentWillUnmount() {
-    
+
   }
 
   render() {
+    let path = require('../../Assets/Images/Bitmapblurred-bg-sm.png')
     return (
-      <div></div>
+      <div style={{backgroundImage: 'url(' + path + ')'}} className={s.background}>
+          <p className={s.title}>{this.props.title}</p>
+      </div>
     );
   }
 

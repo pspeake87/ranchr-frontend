@@ -32,7 +32,7 @@ class Layout extends React.Component {
     return (
       <div className="mdl-layout mdl-js-layout" ref={node => (this.root = node)}>
         <div className="mdl-layout__inner-container">
-          <Header />
+          <Header title={this.props.title}/>
           <main className="mdl-layout__content">
             <div {...this.props} className={cx(s.content, this.props.className)} />
             <Footer />

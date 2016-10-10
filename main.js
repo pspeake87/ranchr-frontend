@@ -13,6 +13,7 @@ import 'whatwg-fetch';
 
 import React from 'react';
 import { createStore, applyMiddleware, combineReducers } from "redux";
+import AuthenticatedAPI from './core/AuthenticatedAPI';
 import ReactDOM from 'react-dom';
 import FastClick from 'fastclick';
 import { Provider } from 'react-redux';
@@ -20,6 +21,7 @@ import thunk from "redux-thunk";
 import router from './core/router';
 import history from './core/history';
 import reducers from './core/Reducers';
+import {setToken} from './core/ActionCreators';
 
 let routes = require('./routes.json'); // Loaded with utils/routes-loader.js
 const container = document.getElementById('container');
@@ -36,7 +38,17 @@ const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
 const store = createStoreWithMiddleware(reducers);
 
 
+store.dispatch(setToken(retrieveToken()));
+store.dispatch(AuthenticatedAPI.actions.initial_rails_data());
 
+
+function retrieveToken() {
+  var token = null
+  if (location.search.charAt( 0 ) === '?' ) {
+    token = location.search.slice( 1 );
+  }
+  return token
+}
 
 function renderComponent(component) {
   ReactDOM.render(<Provider store={store}>{component}</Provider>, container);
