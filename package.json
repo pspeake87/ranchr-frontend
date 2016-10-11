@@ -72,6 +72,7 @@
     "reselect": "^2.5.4",
     "s3": "^4.4.0",
     "sprintf": "^0.1.5",
+    "string": "^3.3.3",
     "style-loader": "^0.13.1",
     "stylelint": "^7.0.3",
     "stylelint-config-standard": "^11.0.0",
