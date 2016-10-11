@@ -22,15 +22,11 @@ export default reduxApi({
   giving: {
     url: '/giving',
     crud: true,
+    broadcast: [ActionTypes.DONATION_ID],
     postfetch: [
       function ({data, actions, dispatch, getState, request}) {
         if (data.success == true) {
-          history.push({
-            pathname: '/givingCheckoutConfirmation',
-            search: '?the=query',
-            state: { some: 'state' }
-          });
-          // Actions.givingCheckoutConfirmation({donation_id: data.donation_id, transaction_id: data.transaction_id});
+          history.push('/givingCheckoutConfirmation');
           dispatch(resetFormData('checkout'));
           dispatch(resetFormData('cart'));
           dispatch(actions.initial_rails_data());

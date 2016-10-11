@@ -8,10 +8,44 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-@media screen and (max-width: 1024px) {
+ .text_inline {
+   display: inline;
+ }
 
-  .content {
-    padding: 0 16px;
-  }
+ .background {
+   width: 100%;
+   height: 200px;
+ }
 
-}
+ .underline {
+   margin: 3px 40px 12px 20px;
+   height: 1px;
+   background-color: gray;
+ }
+
+ input {
+   -webkit-appearance: none;
+   -webkit-border-radius:0px;
+   outline: none;
+   border: 0px;
+ }
+
+ input[type="search"] {-webkit-appearance: none; border-radius: 0 3px 3px 0;}
+
+ .description {
+   font-family: 'Helvetica Neue';
+   font-size: 14px;
+   margin: 15px;
+   color: #8696A2;
+ }
+
+ .title {
+   color: white;
+   position: absolute;
+   font-family: "Helvetica Neue";
+   font-size: 22px;
+   top: 165px;
+   font-weight: bold;
+   left: 15px;
+   text-align: left;
+ }

@@ -12,6 +12,8 @@ import React from 'react';
 import { connect } from "react-redux";
 import Layout from '../../components/Layout';
 import s from './styles.css';
+import RectButton from '../../components/RectButton';
+
 import {getCurrentGivingCategory} from '../../core/Selectors';
 import {setAmountForGivingCategory} from '../../core/ActionCreators';
 import Link from '../../components/Link/Link';
@@ -22,7 +24,7 @@ class GivingCategories extends React.Component {
   constructor() {
      super();
      this.state = {
-      amount: 0.00
+      amount: ""
     };
    }
 
@@ -37,7 +39,6 @@ class GivingCategories extends React.Component {
    }
 
    updateState(props) {
-     console.log(props)
      this.setState({
        amount: props.cart.line_items[props.current_giving_category.id]
      });
@@ -51,20 +52,56 @@ class GivingCategories extends React.Component {
     this.setState({amount: event.target.value});
   }
 
+  renderImage() {
+    if (this.props.current_giving_category.image_url) {
+      if (this.props.current_giving_category.image_url == "/images/original/missing.png") {
+        var img_path = require('../../Assets/Images/giving-category-placeholder.jpg')
+        return (
+          <div>
+            <img className={s.background} src={img_path}/>
+            <p className={s.title} >
+              {this.props.current_giving_category.name}
+            </p>
+          </div>
+        );
+      } else {
+        var img_path = this.props.current_giving_category.image_url
+        return (
+          <div>
+            <img className={s.background} src={img_path}/>
+            <p className={s.title} >
+              {this.props.current_giving_category.name}
+            </p>
+          </div>
+        );
+      }
+    }
+  }
+
   render() {
     return (
-      <Layout className={s.content}>
-        <div>{this.props.current_giving_category.name}</div>
-        <div>{this.props.current_giving_category.description}</div>
-        <div>{this.state.amount || 0.00}</div>
-        <input
-        type="number"
-        value={this.state.amount}
-        onChange={this.handleChange.bind(this)}
-        />
-        <div onClick={() => this.onUpdateCart()}>
-          Submit
+      <Layout title={'Giving'} back_button={true} className={s.content}>
+        <div style={{minHeight: screen.height - 125}}>
+          {this.renderImage()}
+          <div className={s.description}>{this.props.current_giving_category.description}</div>
+          <p style={{paddingLeft: 15}}>amount:</p>
+          <div>
+            <div>
+              <p style={{fontSize: 20, marginLeft: 25}} className={s.text_inline}>$</p>
+              <input type="text"
+              className={s.text_inline}
+              style={{marginLeft: 10, fontSize: 20, width: screen.width - 75}}
+              value={this.state.amount}
+              placeholder={'0.00'}
+              onChange={this.handleChange.bind(this)}
+              />
+            </div>
+            <div className={s.underline} style={{width: screen.width - 60}}/>
+          </div>
         </div>
+
+        <RectButton bottom={0} backgroundColor='#35464f' onPress={() => this.onUpdateCart()} width={screen.width}
+            height='50' title={'Update Cart'}></RectButton>
       </Layout>
     );
   }

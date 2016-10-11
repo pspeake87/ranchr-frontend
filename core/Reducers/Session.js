@@ -36,6 +36,13 @@ export default function reducer(state = initialState, action = {}) {
           braintree_client_token: action.data.giving_client_token
         };
 
+        case ActionTypes.DONATION_ID:
+          return {
+            ...state,
+            donation_id: action.data.donation_id,
+            transaction_id: action.data.transaction_id
+          };
+
     default:
       return state;
   }

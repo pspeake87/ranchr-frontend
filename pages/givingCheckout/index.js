@@ -228,8 +228,8 @@ class GivingCheckout extends React.Component {
   render() {
     let {form, dispatch} = this.props;
     return (
-      <Layout title={'Checkout'} className={s.content}>
-        <div style={{minHeight: screen.height - 120}}>
+      <Layout title={'Checkout'} back_button={true} className={s.content}>
+        <div style={{minHeight: screen.height - 110}}>
         {this.renderAmountHeader()}
         <br/>
         {this.renderCardList()}

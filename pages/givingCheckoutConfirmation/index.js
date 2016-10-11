@@ -14,11 +14,35 @@ import {getPaymentMethodsFormatted} from '../../core/Selectors';
 import { connect } from "react-redux";
 import Layout from '../../components/Layout';
 import s from './styles.css';
+import S from 'string';
 import { title, html } from './index.md';
 import _ from 'underscore';
 import Link from '../../components/Link/Link';
 import {givingCheckoutSubmitted} from '../../core/ActionCreators';
 import history from '../../core/history';
+
+const styles = {
+ text_title: {
+   marginTop: 60,
+   marginLeft: 30,
+   color: '#35464f',
+   fontSize: 36,
+   fontWeight: 'bold'
+ },
+ text_row: {
+   fontSize: 16,
+   paddingLeft: 30,
+   paddingRight: 20,
+   color: '#8296a4',
+ },
+ confirmation_text: {
+   marginLeft: 30,
+   fontSize: 26,
+   marginTop: 20,
+   color: '#35464f',
+   fontWeight: 'bold'
+ }
+}
 
 class GivingCheckoutConfirmation extends React.Component {
 
@@ -31,9 +55,6 @@ class GivingCheckoutConfirmation extends React.Component {
 
   componentDidMount() {
     document.title = title;
-    console.log(location)
-    console.log(location.state)
-
     this.updateState(this.props);
   }
 
@@ -72,8 +93,16 @@ class GivingCheckoutConfirmation extends React.Component {
 
   render() {
     return (
-      <Layout className={s.content}>
-        <h4>Checkout Confirmation</h4>
+      <Layout title={'Confirmation'} className={s.content}>
+      <div>
+        <p style={styles.text_title}>Thank you!</p>
+        <br/>
+        <p style={styles.text_row}>Thank you for the seed you've sown.<br/>
+        A receipt of your gift has been sent to your email.</p>
+        <br/>
+        <p style={styles.text_row}>Your confirmation number:</p>
+        <p style={styles.confirmation_text}>{S(this.props.session.donation_id).padLeft(8, '0').s}</p>
+      </div>
 
       </Layout>
     );
@@ -84,6 +113,7 @@ class GivingCheckoutConfirmation extends React.Component {
 
 function select(state) {
   return {
+    session: state.session,
     giving_categories: state.giving_categories,
   };
 }

@@ -9,16 +9,19 @@
  */
 
 import React, { PropTypes } from 'react';
+import {render} from 'react-dom';
 import AuthenticatedAPI from '../../core/AuthenticatedAPI';
 import { connect } from "react-redux";
 import Layout from '../../components/Layout';
 import s from './styles.css';
 import { title, html } from './index.md';
 import _ from 'underscore';
+import RectButton from '../../components/RectButton';
 import Link from '../../components/Link/Link';
 import {setAmountForGivingCategory, goToGivingCategory, setToken} from '../../core/ActionCreators';
 import history from '../../core/history';
-
+import Spinner from 'react-activity/lib/Spinner';
+import {getCartTotal} from '../../core/Selectors';
 
 
 class Giving extends React.Component {
@@ -64,39 +67,72 @@ class Giving extends React.Component {
 
   handleClick(item) {
     this.props.dispatch(goToGivingCategory(item.id))
+    history.push("/givingCategories");
   }
 
-  renderList() {
+  renderCategoryList() {
+    var colored_text = {
+      color: '#39A2F3',
+       fontWeight: '600'
+    }
+
     return (
-      <ol>
+      <div style={{width: screen.width}}>
         {this.state.categories.map((item, i) =>
-          <li key={i}>
-            <Link to="/givingCategories" onClick={() => this.handleClick(item)}>
-              {item.name}   ${parseInt(item.amount).toFixed(2)}
-            </Link>
-          </li>
+          <div style={{width: screen.width, height: 60, backgroundColor: (parseFloat(item.amount) > 0) ? '#F0F3F6' : 'white'}} className={s.category_wrapper} onClick={() => this.handleClick(item)}>
+            <p style={{width: screen.width - 160, paddingLeft: 20}} className={s.row_text}>
+              {item.name}
+            </p>
+            <p style={{width: 90, textAlign: 'right', paddingRight: 20, color: (parseFloat(item.amount) > 0) ? '#39A2F3' : ''}} className={s.row_text}>${parseFloat(item.amount).toFixed(2)}</p>
+            <div style={{width: 30}} className={s.row_text}>
+              <div className={s.triangle}></div>
+            </div>
+          </div>
         )}
-      </ol>
+      </div>
     );
 
+  }
+
+  renderTotalRow() {
+    return(
+      <div style={{width: screen.width}}>
+          <div style={{width: screen.width, height: 60}} className={s.category_wrapper}>
+            <p style={{width: screen.width - 180, paddingLeft: 20}} className={s.row_text}></p>
+            <p style={{width: 40}} className={s.row_text}>Total:</p>
+            <p style={{width: 100, color: '#39A2F3',fontSize: 16, fontWeight: '600', textAlign: 'right', paddingRight: 20}} className={s.row_text}>${this.state.total.toFixed(2)}</p>
+          </div>
+      </div>
+    )
+  }
+
+  checkout() {
+
+    if(this.props.cart_total == 0) {
+      alert("Please enter an amount for at least one category before checking out");
+    } else {
+      history.push("/givingCheckout");
+    }
   }
 
 
   render() {
-    return (
-      <Layout title={'Giving'} className={s.content}>
-        {this.renderList()}
-        <p>
-          <br /><br />
-        </p>
-        <div>Total: ${this.state.total.toFixed(2)}</div>
-        <br />
-
-        <Link to="/givingCheckout">
-          Submit
-        </Link>
-      </Layout>
-    );
+    if (this.props.giving_categories.has_data) {
+      return (
+        <Layout title={'Giving'} className={s.content}>
+          <div style={{minHeight: screen.height - 110}}>
+            {this.renderCategoryList()}
+            {this.renderTotalRow()}
+          </div>
+          <RectButton bottom={0} backgroundColor='#35464f' onPress={() => this.checkout()} width={screen.width}
+              height='50' title={'Submit'}></RectButton>
+        </Layout>
+      );
+    } else {
+      return (
+        <Spinner color="#727981" size={32} speed={1} />
+      );
+    }
   }
 
 }
@@ -105,7 +141,8 @@ class Giving extends React.Component {
 function select(state) {
   return {
     giving_categories: state.giving_categories,
-    cart_line_items: state.cart.line_items
+    cart_line_items: state.cart.line_items,
+    cart_total: getCartTotal(state)
   };
 }
 

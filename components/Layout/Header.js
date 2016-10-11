@@ -12,24 +12,35 @@ import React from 'react';
 import Navigation from './Navigation';
 import Link from '../Link';
 import s from './Header.css';
+import history from '../../core/history';
 
 class Header extends React.Component {
 
-  componentDidMount() {
-
+  onBackArrow() {
+    history.goBack();
   }
 
-  componentWillUnmount() {
-
+  renderBackArrow() {
+    let path_back = require('../../Assets/Images/back_chevron.png')
+    if(this.props.back_button) {
+      return(
+        <img className={s.back_arrow} src={path_back} onClick={this.onBackArrow}/>
+      )
+    }
   }
 
   render() {
-    let path = require('../../Assets/Images/Bitmapblurred-bg-sm.png')
-    return (
-      <div style={{backgroundImage: 'url(' + path + ')'}} className={s.background}>
-          <p className={s.title}>{this.props.title}</p>
-      </div>
-    );
+    let path_bg = require('../../Assets/Images/Bitmapblurred-bg-sm.png')
+      return (
+        <div>
+          <img className={s.background} src={path_bg} />
+          {this.renderBackArrow()}
+          <span className={s.title}>
+            <p className={s.title_text}>{this.props.title}</p>
+          </span>
+        </div>
+      );
+
   }
 
 }
