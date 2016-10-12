@@ -34,7 +34,6 @@ class Header extends React.Component {
       return (
         <div>
           <img className={s.background} src={path_bg} />
-          {this.renderBackArrow()}
           <span className={s.title}>
             <p className={s.title_text}>{this.props.title}</p>
           </span>
