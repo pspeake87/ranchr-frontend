@@ -45,6 +45,7 @@ class GivingCategories extends React.Component {
    }
 
    onUpdateCart() {
+     console.log('amount', this.state.amount)
      this.props.dispatch(setAmountForGivingCategory(this.props.current_giving_category.id, this.state.amount))
    }
 
@@ -80,7 +81,7 @@ class GivingCategories extends React.Component {
 
   render() {
     return (
-      <Layout title={'Giving'} back_button={true} className={s.content}>
+      <Layout title={'Giving'} className={s.content}>
         <div style={{minHeight: screen.height - 125}}>
           {this.renderImage()}
           <div className={s.description}>{this.props.current_giving_category.description}</div>

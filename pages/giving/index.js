@@ -65,6 +65,8 @@ class Giving extends React.Component {
 
   }
 
+
+
   handleClick(item) {
     this.props.dispatch(goToGivingCategory(item.id))
     history.push("/givingCategories");
