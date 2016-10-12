@@ -16,19 +16,6 @@ import history from '../../core/history';
 
 class Header extends React.Component {
 
-  onBackArrow() {
-    history.goBack();
-  }
-
-  renderBackArrow() {
-    let path_back = require('../../Assets/Images/back_chevron.png')
-    if(this.props.back_button) {
-      return(
-        <img className={s.back_arrow} src={path_back} onClick={this.onBackArrow}/>
-      )
-    }
-  }
-
   render() {
     let path_bg = require('../../Assets/Images/Bitmapblurred-bg-sm.png')
       return (
