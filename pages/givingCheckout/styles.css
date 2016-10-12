@@ -50,13 +50,9 @@
   }
 
   input {
-    -webkit-appearance: none;
-    -webkit-border-radius:0px;
     outline: none;
     border: 0px;
   }
-
-  input[type="search"] {-webkit-appearance: none; border-radius: 0 3px 3px 0;}
 
   .text_inline {
     display: inline;

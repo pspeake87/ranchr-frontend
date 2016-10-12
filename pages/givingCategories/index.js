@@ -88,7 +88,7 @@ class GivingCategories extends React.Component {
           <div>
             <div>
               <p style={{fontSize: 20, marginLeft: 25}} className={s.text_inline}>$</p>
-              <input type="text"
+              <input type="number"
               className={s.text_inline}
               style={{marginLeft: 10, fontSize: 20, width: screen.width - 75}}
               value={this.state.amount}
