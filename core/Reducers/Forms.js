@@ -23,24 +23,6 @@ const initialState = {
       message: '',
       choosing_payment_method: ''
     }
-  },
-  signUp: {
-    ...FORM_STATE_TEMPLATE,
-    data: {
-      full_name: '',
-      email: '',
-      password: '',
-      verify_password: ''
-    }
-  },
-  resetPassword: {
-    ...FORM_STATE_TEMPLATE,
-    data: {
-      password: '',
-      verify_password: '',
-      email: '',
-      code: ''
-    }
   }
 };
 

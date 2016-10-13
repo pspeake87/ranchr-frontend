@@ -37,6 +37,13 @@ export default reduxApi({
         dispatch(setFormSaving("checkout", false));
       }
     ]
+  },
+  profile: {
+    url: '/profile',
+    postfetch: [
+      function ({data, actions, dispatch, getState, request}) {
+      }
+    ]
   }
 })
   .use("options", (url, params, getState)=> {

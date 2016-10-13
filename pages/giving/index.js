@@ -67,8 +67,8 @@ class Giving extends React.Component {
 
 
 
-  handleClick(item) {
-    this.props.dispatch(goToGivingCategory(item.id))
+  handleClick(id) {
+    this.props.dispatch(goToGivingCategory(id + 1))
     history.push("/givingCategories");
   }
 
@@ -81,7 +81,7 @@ class Giving extends React.Component {
     return (
       <div style={{width: screen.width}}>
         {this.state.categories.map((item, i) =>
-          <div style={{width: screen.width, height: 60, backgroundColor: (parseFloat(item.amount) > 0) ? '#F0F3F6' : 'white'}} className={s.category_wrapper} onClick={() => this.handleClick(item)}>
+          <div style={{width: screen.width, height: 60, backgroundColor: (parseFloat(item.amount) > 0) ? '#F0F3F6' : 'white'}} className={s.category_wrapper} onClick={() => this.handleClick(i)}>
             <p style={{width: screen.width - 160, paddingLeft: 20}} className={s.row_text}>
               {item.name}
             </p>

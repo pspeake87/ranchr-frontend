@@ -33,7 +33,19 @@ class GivingCheckout extends React.Component {
    }
 
   componentDidMount() {
-    document.title = title;
+    let {payment_methods, dispatch, profile} = this.props;
+    var default_payment_method;
+    if (_.size(payment_methods.data) == 0) {
+      default_payment_method = 'new';
+    } else {
+      default_payment_method = _.findWhere(payment_methods, {is_default: true});
+    }
+    dispatch(setFormData(FORM_KEY, {payment_method: default_payment_method}));
+    if (profile.data.name && profile.data.email) {
+      dispatch(setFormData(FORM_KEY, {name: profile.data.name}))
+      dispatch(setFormData(FORM_KEY, {email: profile.data.email}))
+    }
+
     this.updateState(this.props);
   }
 
@@ -251,6 +263,7 @@ class GivingCheckout extends React.Component {
 
 function select(state) {
   return {
+    profile: state.profile,
     session: state.session,
     form: state.forms[FORM_KEY],
     giving_categories: state.giving_categories,
