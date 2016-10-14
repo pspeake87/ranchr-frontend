@@ -107,7 +107,7 @@
     "eslint": "eslint components core pages test utils main.js run.js webpack.config.js",
     "stylelint": "stylelint \"components/**/*.css\" \"pages/**/*.css\"",
     "lint": "npm run eslint && npm run stylelint",
-    "test": "mocha --compilers js:babel-register",
+    "test": "NODE_ENV=test mocha --opts test/mocha.opts",
     "test:watch": "mocha --compilers js:babel-register --reporter min --watch",
     "clean": "node run clean",
     "build": "node run build",
@@ -115,5 +115,14 @@
     "publish": "node run publish",
     "publish:debug": "node run publish --debug",
     "start": "node run"
+  },
+  "devDependencies": {
+    "babel-preset-stage-0": "^6.16.0",
+    "chai-enzyme": "^0.5.2",
+    "enzyme": "^2.4.1",
+    "fetch-mock": "^5.5.0",
+    "mockery": "^2.0.0",
+    "proxyquire": "^1.7.10",
+    "redux-mock-store": "^1.2.1"
   }
 }
