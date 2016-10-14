@@ -127,7 +127,7 @@ class Giving extends React.Component {
             {this.renderTotalRow()}
           </div>
           <RectButton bottom={0} backgroundColor='#35464f' onPress={() => this.checkout()} width={screen.width}
-              height='50' title={'Submit'}></RectButton>
+              height='50' title={'Checkout'}></RectButton>
         </Layout>
       );
     } else {
