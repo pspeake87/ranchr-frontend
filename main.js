@@ -43,11 +43,16 @@ store.dispatch(AuthenticatedAPI.actions.initial_rails_data());
 
 
 function retrieveToken() {
-  var token = null
+  var token;
+
   if (location.search.charAt( 0 ) === '?' ) {
     token = location.search.slice( 1 );
   }
-  return token
+
+  if (token != 'null') {
+    return token
+  }
+  return null
 }
 
 function renderComponent(component) {
