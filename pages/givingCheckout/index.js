@@ -221,16 +221,18 @@ class GivingCheckout extends React.Component {
   }
 
   renderAddCardButton() {
-    return(
-      <div onClick={() => this.addCardButtonPressed('new')}>
-        <div className={s.addWrapper}>
-          <p className={s.addPlusSign}>+</p>
+    if (this.props.session.access_token) {
+      return(
+        <div onClick={() => this.addCardButtonPressed('new')}>
+          <div className={s.addWrapper}>
+            <p className={s.addPlusSign}>+</p>
+          </div>
+          <p className={s.addText}>
+            use a different credit card
+          </p>
         </div>
-        <p className={s.addText}>
-          use a different credit card
-        </p>
-      </div>
-    )
+      )
+    }
   }
 
   onCheckout() {
@@ -265,7 +267,6 @@ class GivingCheckout extends React.Component {
         {this.renderAddCardButton()}
         <br/>
         {this.renderCreditCardForm()}
-
         <br/>
         </div>
         {this.renderRectButton()}
