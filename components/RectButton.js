@@ -32,11 +32,11 @@ module.exports = class RectButton extends React.Component {
       width: Number(this.props.width)
     };
     return (
-      <div onClick={this.props.onPress} style={view}>
+      <button ref={this.props.ref} onClick={this.props.onPress} style={view}>
         <div>
           <p style={text}>{this.props.title}</p>
         </div>
-      </div>
+      </button>
     );
   }
 };

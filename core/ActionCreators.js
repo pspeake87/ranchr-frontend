@@ -79,7 +79,7 @@ export function setCurrentCard(token) {
   }
 }
 
-export function givingCheckoutSubmitted() {
+export function givingCheckoutSubmitted(ref) {
   return function (dispatch, getState) {
     let {forms, payment_methods} = getState()
 

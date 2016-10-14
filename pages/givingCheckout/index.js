@@ -234,7 +234,23 @@ class GivingCheckout extends React.Component {
   }
 
   onCheckout() {
-    this.props.dispatch(givingCheckoutSubmitted())
+    this.props.dispatch(givingCheckoutSubmitted(this.refs.btn))
+  }
+
+  renderRectButton() {
+    let {form} = this.props
+    if (form.saving) {
+      return(
+        <RectButton ref='btn' bottom={25} backgroundColor='gray' width={screen.width}
+            height='50' title={'Submiting'}></RectButton>
+      )
+    } else {
+      return(
+        <RectButton ref='btn' bottom={25} backgroundColor='#35464f' onPress={() => this.onCheckout()} width={screen.width}
+            height='50' title={'Submit'}></RectButton>
+      )
+    }
+
   }
 
   render() {
@@ -252,8 +268,7 @@ class GivingCheckout extends React.Component {
 
         <br/>
         </div>
-        <RectButton bottom={25} backgroundColor='#35464f' onPress={() => this.onCheckout()} width={screen.width}
-            height='50' title={'Submit'}></RectButton>
+        {this.renderRectButton()}
       </Layout>
     );
   }

@@ -15,7 +15,9 @@
     width: 15px;
     padding: 10px;
   }
-
+  .btn:disabled{
+    background-color: gray;
+  }
   .addWrapper {
     display: inline-block;
     background-color: rgb(56, 162, 243);
