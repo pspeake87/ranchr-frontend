@@ -211,10 +211,13 @@ class GivingCheckout extends React.Component {
       let unchecked_path = require('../../Assets/Images/hollow-circle.png');
       return(
         <div className={s.card_wrapper}>
-          <img className={s.card_image} src={(form.data.keep_card_on_file === true) ? checked_path : unchecked_path}/>
-          <p className={s.text_inline} onClick={() => dispatch(setFormData(FORM_KEY, {keep_card_on_file: !form.data.keep_card_on_file}))}>
-            Save card for future transactions
-          </p>
+          <div className={s.card_wrapper}>
+            <img className={s.card_image} src={(form.data.keep_card_on_file === true) ? checked_path : unchecked_path}/>
+            <p className={s.text_inline} onClick={() => dispatch(setFormData(FORM_KEY, {keep_card_on_file: !form.data.keep_card_on_file}))}>
+              Save card for future transactions
+            </p>
+          </div>
+            <p style={{width: screen.width - 80, margin: 40,marginTop: 5,color: '#8696A2'}}>If you choose to save your card on file, your credit card information will be encrypted and stored with our payment processor securely.  We do not keep copies on hand of your credit card details.</p>
         </div>
       );
     }
