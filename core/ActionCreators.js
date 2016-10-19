@@ -117,7 +117,6 @@ export function givingCheckoutSubmitted(ref) {
           return false;
         }
       } else {
-        alert('Please enter a email address');
         return false;
       }
     };
