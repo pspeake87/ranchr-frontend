@@ -166,6 +166,9 @@ export function completeCheckout() {
             }
           }, function (err, response) {
 
+            if(err) {
+              alert(err);
+            } else {
               let payment_method_nonce = response.creditCards[0].nonce;
               let payload = {
                 ...base_payload,
@@ -175,6 +178,7 @@ export function completeCheckout() {
 
               let request_data = {body: JSON.stringify(payload)};
               dispatch(AuthenticatedAPI.actions.giving.post({}, request_data));
+            }
 
           });
         });
