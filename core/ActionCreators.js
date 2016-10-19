@@ -105,7 +105,24 @@ export function givingCheckoutSubmitted(ref) {
       }
     }
 
-    if (validateCard()) {
+    let validateEmail = () => {
+
+      var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+      if (form_state.email && form_state.email.length > 0) {
+        if (regex.test(form_state.email)) {
+          return true;
+        } else {
+          alert('Please enter a valid email address');
+          return false;
+        }
+      } else {
+        alert('Please enter a email address');
+        return false;
+      }
+    };
+
+    if (validateCard() && validateEmail()) {
       dispatch(setFormSaving(form_key, true));
       dispatch(completeCheckout())
     }
