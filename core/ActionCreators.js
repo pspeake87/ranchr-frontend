@@ -168,6 +168,7 @@ export function completeCheckout() {
 
             if(err) {
               alert(err);
+              dispatch(setFormSaving(form_key, false));
             } else {
               let payment_method_nonce = response.creditCards[0].nonce;
               let payload = {
