@@ -1,7 +1,7 @@
 [
   {
     "path": "/",
-    "page": "./pages/giving",
+    "page": "./pages/dashboardMain",
     "chunk": "main"
   },
   {
@@ -10,19 +10,27 @@
     "chunk": "main"
   },
   {
-    "path": "/givingCategories",
-    "page": "./pages/givingCategories"
+    "path": "/cattle_management",
+    "page": "./pages/cattleManagement"
   },
   {
-    "path": "/givingCheckout",
-    "page": "./pages/givingCheckout"
+    "path": "/settings",
+    "page": "./pages/settings"
   },
   {
-    "path": "/givingCheckoutConfirmation",
-    "page": "./pages/givingCheckoutConfirmation"
+    "path": "/inventory",
+    "page": "./pages/inventory"
   },
   {
-    "path": "/tasks/:status(pending|completed)?",
-    "page": "./pages/giving"
+    "path": "/metrics/:id",
+    "page": "./pages/metrics"
+  },
+  {
+    "path": "/markets",
+    "page": "./pages/markets"
+  },
+  {
+    "path": "/fields",
+    "page": "./pages/fields"
   }
 ]

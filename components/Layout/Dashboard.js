@@ -11,10 +11,14 @@
 import React, { PropTypes } from 'react';
 import cx from 'classnames';
 import Header from './Header';
-import Footer from '../Footer';
-import s from './Layout.css';
+import SideNav from './SideNav';
 
-class Layout extends React.Component {
+import s from './Dashboard.css';
+
+import { Col, Nav, NavItem, MenuItem, NavDropdown, Navbar } from 'react-bootstrap';
+
+
+class Dashboard extends React.Component {
 
   static propTypes = {
     className: PropTypes.string,
@@ -30,17 +34,17 @@ class Layout extends React.Component {
 
   render() {
     return (
-      <div className="mdl-layout mdl-js-layout" ref={node => (this.root = node)}>
-        <div className="mdl-layout__inner-container">
-          <Header title={'Giving'}/>
-          <main className="mdl-layout__content">
-            <div {...this.props} className={cx(s.content, this.props.className)} />
-            <Footer />
-          </main>
-        </div>
+       <div ref={node => (this.root = node)}>
+        <Col bsStyle="Container">
+          <Header/>
+          <SideNav/>
+          <div {...this.props} className={s.content}>
+
+          </div>
+        </Col>
       </div>
     );
   }
 }
 
-export default Layout;
+export default Dashboard;

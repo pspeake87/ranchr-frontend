@@ -12,8 +12,8 @@ import 'babel-polyfill';
 import 'whatwg-fetch';
 
 import React from 'react';
-import { createStore, applyMiddleware, combineReducers } from "redux";
-import AuthenticatedAPI from './core/AuthenticatedAPI';
+import { createStore, applyMiddleware, combineReducers, compose } from "redux";
+
 import ReactDOM from 'react-dom';
 import FastClick from 'fastclick';
 import { Provider } from 'react-redux';
@@ -21,10 +21,13 @@ import thunk from "redux-thunk";
 import router from './core/router';
 import history from './core/history';
 import reducers from './core/Reducers';
-import {setToken} from './core/ActionCreators';
+import {FetchWeatherData} from './core/ActionCreators';
+import jsonp from 'jsonp';
 
 let routes = require('./routes.json'); // Loaded with utils/routes-loader.js
 const container = document.getElementById('container');
+
+
 const middlewares = [thunk];
 
 const createLogger = require('redux-logger');
@@ -32,28 +35,10 @@ const logger = createLogger({
   //predicate: (getState, action) => action.type.match(/DRUPAL/)
 });
 middlewares.push(logger);
-const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
 
+const store = compose(applyMiddleware(...middlewares))(createStore)(reducers);
 
-const store = createStoreWithMiddleware(reducers);
-
-
-store.dispatch(setToken(retrieveToken()));
-store.dispatch(AuthenticatedAPI.actions.initial_rails_data());
-
-
-function retrieveToken() {
-  var token;
-
-  if (location.search.charAt( 0 ) === '?' ) {
-    token = location.search.slice( 1 );
-  }
-
-  if (token != 'null') {
-    return token
-  }
-  return null
-}
+store.dispatch(FetchWeatherData())
 
 function renderComponent(component) {
   ReactDOM.render(<Provider store={store}>{component}</Provider>, container);

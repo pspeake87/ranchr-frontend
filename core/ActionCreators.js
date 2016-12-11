@@ -2,7 +2,7 @@ import _ from 'underscore';
 import * as ActionTypes from './ActionTypes';
 import AuthenticatedAPI from './AuthenticatedAPI';
 import history from './history';
-import braintree from 'braintree-web';
+import jsonp from 'jsonp';
 
 let INVALIDATE = 'INVALIDATE';
 let API_REQUEST = 'API_REQUEST';
@@ -10,12 +10,85 @@ let API_SUCCESS = 'API_SUCCESS';
 let API_FAILURE = 'API_FAILURE';
 
 
-export function initialRailsDataFetched(data) {
+export function InitialDataFetched(data) {
   return {
-    type: ActionTypes.INITIAL_RAILS_DATA_FETCHED,
+    type: ActionTypes.SET_CURRENT_GIVING_CATEGORY_ID,
     data
   };
 }
+
+export function WeatherDataFetched(data) {
+  return {
+    type: ActionTypes.SET_WEATHER_DATA,
+    data
+  };
+}
+
+
+export function FetchWeatherData(data) {
+  return function (dispatch, getState) {
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+      jsonp('https://api.darksky.net/forecast/a8daf5683208b1b815c5aba017d21503/' + position.coords.latitude + ',' + position.coords.longitude, {}, (err, data) => {
+        dispatch(WeatherDataFetched(data));
+      })
+    });
+
+  };
+}
+
+
+
+export function login(email, password) {
+
+  return function (dispatch, getState) {
+
+    let {session} = getState();
+
+    // First dispatch: the app state is updated to inform
+    // that the API call is starting.
+    if (!session.is_fetching) {
+
+      dispatch(accessTokenFetching());
+
+      let request_data = {
+        email,
+        password,
+        grant_type: 'password',
+        client_id: Config.OAUTH_CLIENT_ID,
+        client_secret: Config.OAUTH_CLIENT_SECRET
+      };
+
+      let fetch_options = {
+        method: 'post',
+        body: JSON.stringify(request_data),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      };
+
+      //payment succeeded, pass nonce to server
+      fetch(Config.TOKEN_URL, fetch_options)
+        .then(fetchResponseHelper, fetchErrorHelper)
+        .then((responseJSON) => {
+          persistentStorage.save('oauth_token', responseJSON);
+          dispatch(accessTokenSuccess(responseJSON));
+
+          // TODO: What is this here for?  Seems inappropriate
+          dispatch(setFormSaving("signUp", false));
+          dispatch(resetFormData("signUp"))
+
+        })
+        .catch((error) => {
+          alert('There was a problem signing you in. Please check your email and password.');
+          console.log('error', error);
+          dispatch(accessTokenFailure());
+        });
+    }
+  }
+}
+
 
 export function setToken(token) {
   return function (dispatch) {

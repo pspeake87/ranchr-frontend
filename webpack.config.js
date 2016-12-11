@@ -114,6 +114,10 @@ const config = {
         ],
       },
       {
+          test: /\.scss$/,
+          loaders: ['style', 'css', 'sass']
+      },
+      {
         test: /\.json$/,
         exclude: [
           path.resolve(__dirname, './routes.json'),

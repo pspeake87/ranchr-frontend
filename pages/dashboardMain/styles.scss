@@ -1,0 +1,97 @@
+/**
+* React Static Boilerplate
+* https://github.com/kriasoft/react-static-boilerplate
+*
+* Copyright © 2015-present Kriasoft, LLC. All rights reserved.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE.txt file in the root directory of this source tree.
+*/
+
+
+.weather {
+  height: 200px;
+  text-align: center;
+}
+
+.cattle-box {
+  display: inline-block;
+  h3 {
+    padding-left: 20px;
+    padding-top: 25px;
+    padding-bottom: 12.5px;
+    background-color: #1B998B;
+    font-family: Lato,sans-serif;
+    font-weight: 500;
+    line-height: 1.1;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  .inner-box {
+    border-radius: 10px;
+    background-color: white
+  }
+  form {
+    padding: 10px;
+  }
+}
+
+.market-box {
+  display: inline-block;
+  h3 {
+    padding-left: 20px;
+    padding-top: 25px;
+    padding-bottom: 12.5px;
+    background-color: #30BCED;
+    font-family: Lato,sans-serif;
+    font-weight: 500;
+    line-height: 1.1;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  .inner-box {
+    border-radius: 10px;
+    background-color: white
+  }
+  .search-box {
+    padding: 10px;
+  }
+}
+
+.spinner {
+  text-align: center;
+  padding-top: 80px;
+}
+
+
+.weather-temp {
+  color: white;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.weatherCard {
+  margin-left: 1px;
+  display: inline-block;
+  height: 200px;
+  width: 125px;
+  background: #1e5799; /* Old browsers */
+  background: -moz-linear-gradient(top,  #1e5799 0%, #2989d8 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #1e5799 0%,#2989d8 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #1e5799 0%,#2989d8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+}
+
+.box1 {
+  height: 200px;
+  margin:20px;
+  background-color: orange;
+}
+
+.box2 {
+  height: 200px;
+  margin:20px;
+  background-color: green;
+}

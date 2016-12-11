@@ -12,7 +12,7 @@ import React, { PropTypes } from 'react';
 import AuthenticatedAPI from '../../core/AuthenticatedAPI';
 import {getPaymentMethodsFormatted} from '../../core/Selectors';
 import { connect } from "react-redux";
-import Layout from '../../components/Layout';
+import Dashboard from '../../components/Layout/Dashboard';
 import s from './styles.css';
 import S from 'string';
 import { title, html } from './index.md';
@@ -93,7 +93,7 @@ class GivingCheckoutConfirmation extends React.Component {
 
   render() {
     return (
-      <Layout title={'Confirmation'} className={s.content}>
+      <Dashboard title={'Confirmation'} className={s.content}>
       <div>
         <p style={styles.text_title}>Thank you!</p>
         <br/>
@@ -104,7 +104,7 @@ class GivingCheckoutConfirmation extends React.Component {
         <p style={styles.confirmation_text}>{S(this.props.session.donation_id).padLeft(8, '0').s}</p>
       </div>
 
-      </Layout>
+      </Dashboard>
     );
   }
 

@@ -61,4 +61,4 @@ export default reduxApi({
     }
   })
   .use("fetch", adapterFetch(fetch))
-  .use("rootUrl", "https://familycc-staging.herokuapp.com/api/v1/");
+  .use("rootUrl", "https://ranchr-staging.herokuapp.com/api/v1/");

@@ -12,7 +12,7 @@ import React, { PropTypes } from 'react';
 import AuthenticatedAPI from '../../core/AuthenticatedAPI';
 import {getPaymentMethodsFormatted} from '../../core/Selectors';
 import { connect } from "react-redux";
-import Layout from '../../components/Layout';
+import Dashboard from '../../components/Layout/Dashboard';
 import s from './styles.css';
 import { title, html } from './index.md';
 import _ from 'underscore';
@@ -261,7 +261,7 @@ class GivingCheckout extends React.Component {
   render() {
     let {form, dispatch} = this.props;
     return (
-      <Layout title={'Checkout'} className={s.content}>
+      <Dashboard title={'Checkout'} className={s.content}>
         <div style={{minHeight: screen.height - 110}}>
         {this.renderAmountHeader()}
         <br/>
@@ -273,7 +273,7 @@ class GivingCheckout extends React.Component {
         <br/>
         </div>
         {this.renderRectButton()}
-      </Layout>
+      </Dashboard>
     );
   }
 

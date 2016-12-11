@@ -5,6 +5,7 @@ import payment_methods from './Reducers/PaymentMethods';
 import forms from './Reducers/Forms';
 import session from './Reducers/Session';
 import profile from './Reducers/Profile';
+import weather from './Reducers/Weather';
 
 export default combineReducers({
   giving_categories,
@@ -12,5 +13,6 @@ export default combineReducers({
   payment_methods,
   forms,
   session,
-  profile
+  profile,
+  weather
 });

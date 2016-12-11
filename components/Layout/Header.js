@@ -17,13 +17,11 @@ import history from '../../core/history';
 class Header extends React.Component {
 
   render() {
-    let path_bg = require('../../Assets/Images/Bitmapblurred-bg-sm.png')
+    let path_bg = require('../../Assets/Images/ranchr_logo_white.png')
       return (
         <div>
-          <img className={s.background} src={path_bg} />
-          <span className={s.title}>
-            <p className={s.title_text}>{this.props.title}</p>
-          </span>
+          <div className={s.background} />
+            <img className={s.title} src={path_bg}/>
         </div>
       );
 

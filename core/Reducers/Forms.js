@@ -10,18 +10,10 @@ const FORM_STATE_TEMPLATE = {
 };
 
 const initialState = {
-  checkout: {
+  cattle: {
     ...FORM_STATE_TEMPLATE,
     data: {
-      payment_method: '',
-      card_number: '',
-      exp_month: '',
-      exp_year: '',
-      name: '',
-      email: '',
-      keep_card_on_file: false,
-      message: '',
-      choosing_payment_method: ''
+      search: ""
     }
   }
 };

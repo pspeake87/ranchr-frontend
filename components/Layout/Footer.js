@@ -10,10 +10,13 @@
 
 import React from 'react';
 import Link from '../Link';
+import s from './Footer.scss';
 
 function Footer() {
   return (
-    <div></div>
+    <div>
+      
+    </div>
   );
 }
 
